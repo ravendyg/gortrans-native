@@ -54,3 +54,7 @@ android/app/libs
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+
+android/app/my-release-key.keystore
+android/gradle.properties.to.copy
