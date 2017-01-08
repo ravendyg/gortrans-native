@@ -1,11 +1,19 @@
 'use strict';
 
 import { AsyncStorage } from 'react-native';
-import * as config from './config';
+import {combineReducers, createStore} from 'redux';
 
-module.exports = {
-  test
-};
+import * as config from './config';
+import { Actions, ActionCreators } from './action-creators';
+
+
+const app =
+  combineReducers({
+    dataLoaded
+  });
+
+const Store = createStore(app);
+
 
 const data = {
   apiKey: '',
@@ -120,16 +128,15 @@ AsyncStorage.getItem('@gortransStore:smallStrings')
   data.stopsData.stops = stops;
   data.stopsData.busStops = busStops;
 })
+.then( () => {
+  Store.dispatch( ActionCreators.loadData() );
+})
 .catch(handeError);
 
 function handeError(err) {
   console.error(err);
 }
 
-
-function test() {
-  console.log('test');
-}
 
 function parseArray(arr) {
   let temp = [];
@@ -148,3 +155,21 @@ function parseObj(obj) {
 
   return temp;
 }
+
+
+// reducers
+
+function dataLoaded(state = false, action) {
+  switch( action.type ) {
+    case Actions.UPDATE_BUS_DATA:
+      return true;
+    default:
+      return state;
+  }
+}
+
+
+
+module.exports = {
+  Store
+};

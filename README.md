@@ -18,13 +18,13 @@ MYAPP_RELEASE_STORE_PASSWORD=***
 MYAPP_RELEASE_KEY_PASSWORD=***
 
 
-rm -rf node_modules && npm install
+- rm -rf node_modules && npm install
 
-npm cache clean
+- npm cache clean
 
-node_modules/react-native/packager/packager.sh --reset-cache
+- node_modules/react-native/packager/packager.sh --reset-cache
 
-cd android && && ./gradlew assembleRelease
+- cd android && && ./gradlew assembleRelease
 
 Thanks to https://github.com/facebook/react-native/issues/4968 and https://shift.infinite.red/what-sucks-about-react-native-c38a307a210f
 
