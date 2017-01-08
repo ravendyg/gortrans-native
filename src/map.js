@@ -9,6 +9,7 @@ import {
 
 import MapView from 'react-native-maps';
 
+import { test } from './store';
 
 const styles = StyleSheet.create({
  container: {

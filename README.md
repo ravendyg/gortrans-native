@@ -27,3 +27,6 @@ node_modules/react-native/packager/packager.sh --reset-cache
 cd android && && ./gradlew assembleRelease
 
 Thanks to https://github.com/facebook/react-native/issues/4968 and https://shift.infinite.red/what-sucks-about-react-native-c38a307a210f
+
+#### ENOSPC
+http://stackoverflow.com/questions/22475849/node-js-error-enospc
