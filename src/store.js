@@ -156,6 +156,10 @@ function parseObj(obj) {
   return temp;
 }
 
+function test() {
+  console.log('test');
+}
+
 
 // reducers
 
@@ -171,5 +175,5 @@ function dataLoaded(state = false, action) {
 
 
 module.exports = {
-  Store
+  Store, test
 };

@@ -12,7 +12,7 @@ import MapView from 'react-native-maps';
 
 import { FloatingButtonAndroid } from "react-native-android-kit";
 
-import { Store } from './store';
+import { Store, test } from './store';
 
 const styles = StyleSheet.create({
   container: {
@@ -144,3 +144,5 @@ export class Map extends React.Component {
     );
   }
 }
+
+test();
