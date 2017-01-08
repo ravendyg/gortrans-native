@@ -1,4 +1,4 @@
-package com.gtest;
+package com.venomyd.nskgortrans;
 
 import android.app.Application;
 import android.util.Log;

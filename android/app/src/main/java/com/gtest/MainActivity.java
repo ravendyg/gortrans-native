@@ -1,4 +1,4 @@
-package com.gtest;
+package com.venomyd.nskgortrans;
 
 import com.facebook.react.ReactActivity;
 
