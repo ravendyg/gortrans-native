@@ -40,8 +40,8 @@ AsyncStorage.getItem('@gortransStore:smallStrings')
     key = Math.random().toString().slice(2);
     routesTimestamp = 0;
     trassesTimestamp = 0;
-    lastUpdate = Date.now();
-    AsyncStorage.setItem('@gortransStore:smallStrings', JSON.stringify({key, routesTimestamp, trassesTimestamp, lastUpdate}));
+    lastUpdate = 0;
+    AsyncStorage.setItem('@gortransStore:smallStrings', JSON.stringify({key, routesTimestamp, trassesTimestamp, lastUpdate: Date.now()}));
   } else {
     try {
       var {key, routesTimestamp, trassesTimestamp, lastUpdate} = JSON.parse(str);
