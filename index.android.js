@@ -4,10 +4,14 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  BackAndroid
 } from 'react-native';
 
 import { Map } from './src/map';
+import { DrawerHolder } from './src/drawer';
+
+import Drawer from 'react-native-drawer';
 
 export default class gtest extends Component {
 
@@ -36,9 +40,36 @@ export default class gtest extends Component {
     );
   }
 
+  // componentDidMount() {
+
+  // }
+
+
+  openControlPanel = () => {
+    this._drawer.open();
+    BackAndroid.addEventListener('hardwareBackPress', this.closeOnBack);
+  };
+  closeControlPanel = () => {
+    this._drawer.close();
+    BackAndroid.removeEventListener('hardwareBackPress', this.closeOnBack);
+  };
+  closeOnBack = () => {
+    this.closeControlPanel();
+    return true;
+  }
+
+
   render() {
     return (
-        <Map initialRegion={this.state.initialRegion}/>
+      <Drawer
+        ref={(ref) => this._drawer = ref}
+        content={<DrawerHolder/>}
+      >
+        <Map
+          initialRegion={this.state.initialRegion}
+          openControlPanel={this.openControlPanel}
+        />
+      </Drawer>
     );
   }
 }

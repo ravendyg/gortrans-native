@@ -12,7 +12,8 @@ import MapView from 'react-native-maps';
 
 import { FloatingButtonAndroid } from "react-native-android-kit";
 
-import { Store, test } from './store';
+import { Store } from './store';
+import { ActionCreators } from './action-creators';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +70,7 @@ export class Map extends React.Component {
     super();
 
     this.state = {
-      showSearchBtn: false
+      showSearchBtn: false,
     };
 
     this.fabBackgroundColor = '#ffefefef';
@@ -84,9 +85,7 @@ export class Map extends React.Component {
       () => {
         if (Store.getState().dataLoaded) {
           unsubscribe();
-          this.setState({
-            showSearchBtn: true
-          });
+          this.setState(Object.assign({}, this.state, { showSearchBtn: true }));
         }
       }
     )
@@ -97,8 +96,33 @@ export class Map extends React.Component {
 
   }
 
+  showBusSelector() {
+    let unsubscribe = Store.subscribe(
+      () => {
+        this.props.openControlPanel();
+        unsubscribe();
+      }
+    );
+    Store.dispatch( ActionCreators.showBusSelector() );
+  }
+
   render() {
     let initialRegion = this.props.initialRegion;
+
+    let searchBtn = null;
+    if (this.state.showSearchBtn) {
+      searchBtn =
+        <View style = {styles.searchFabContainer}>
+          <FloatingButtonAndroid
+            style={styles.searchFab}
+            backgroundColor={this.fabBackgroundColor}
+            rippleColor='black'
+            icon = 'search'
+            textSize = {25}
+            onPress={this.showBusSelector.bind(this)}
+          />
+        </View>;
+    }
 
     return (
       <View style = {styles.container}>
@@ -140,22 +164,9 @@ export class Map extends React.Component {
           />
         </View>
 
-        <View style = {styles.searchFabContainer}>
-          <FloatingButtonAndroid
-            style={styles.searchFab}
-            backgroundColor={this.fabBackgroundColor}
-            rippleColor='black'
-            icon = 'search'
-            textSize = {25}
-            onPress={
-              () => console.log("Event onPress")
-            }
-          />
-        </View>
+        {searchBtn}
 
       </View>
     );
   }
 }
-
-test();

@@ -9,7 +9,7 @@ import { Actions, ActionCreators } from './action-creators';
 
 const app =
   combineReducers({
-    dataLoaded
+    dataLoaded, drawer
   });
 
 const Store = createStore(app);
@@ -92,8 +92,10 @@ AsyncStorage.getItem('@gortransStore:smallStrings')
       : Promise.resolve(null)
   ]);
 })
-.then( _data => {
-  let [routes, {routeCodes, trasses}, stops, busStops, respJson] = _data;
+.then( ([routes, {routeCodes, trasses}, stops, busStops, respJson]) => {
+
+  data.routes.routes = routes;
+  Store.dispatch( ActionCreators.loadData() );
 
   if (respJson) { // made successfull sync
     if (respJson.routes.timestamp > data.routes.timestamp) {
@@ -123,13 +125,10 @@ AsyncStorage.getItem('@gortransStore:smallStrings')
     );
   }
 
-  data.routes.routes = routes;
+
   data.trasses.trasses = trasses;
   data.stopsData.stops = stops;
   data.stopsData.busStops = busStops;
-})
-.then( () => {
-  Store.dispatch( ActionCreators.loadData() );
 })
 .catch(handeError);
 
@@ -156,8 +155,8 @@ function parseObj(obj) {
   return temp;
 }
 
-function test() {
-  console.log('test');
+function getRoutes() {
+  return data.routes.routes;
 }
 
 
@@ -172,8 +171,17 @@ function dataLoaded(state = false, action) {
   }
 }
 
+function drawer(state = {mode: ''}, action) {
+  switch(action.type) {
+    case Actions.SHOW_BUS_SELECTOR:
+      return {mode: 'busSelector'};
+    default:
+      return state;
+  }
+}
+
 
 
 module.exports = {
-  Store, test
+  Store, getRoutes
 };
