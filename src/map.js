@@ -111,7 +111,7 @@ export class Map extends React.Component {
             style={styles.fab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
-            icon = 'ic_zoom_in_black_24dp'
+            icon = 'plus'
             onPress={
               () => console.log("Event onPress")
             }
@@ -121,7 +121,7 @@ export class Map extends React.Component {
             style={styles.fab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
-            icon = 'ic_zoom_out_black_24dp'
+            icon = 'minus'
             onPress={
               () => console.log("Event onPress")
             }
@@ -131,7 +131,7 @@ export class Map extends React.Component {
             style={styles.fab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
-            icon = 'ic_room_black_24dp'
+            icon = 'location'
             textSize = {25}
             onPress={
               () => console.log("Event onPress")
