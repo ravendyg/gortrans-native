@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  fabContainer: {
+  mapFabContainer: {
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -41,22 +41,25 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingRight: 25
   },
-  fab: {
+  mapFab: {
     height: 50,
     width: 50,
     marginTop: 25,
     marginBottom: 25,
-    padding: -10
   },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'black',
+  searchFabContainer: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    paddingBottom: 25
+  },
+  searchFab: {
+    height: 50,
+    width: 50,
   },
 });
 
@@ -106,9 +109,9 @@ export class Map extends React.Component {
         >
         </MapView>
 
-        <View style = {styles.fabContainer}>
+        <View style = {styles.mapFabContainer}>
           <FloatingButtonAndroid
-            style={styles.fab}
+            style={styles.mapFab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
             icon = 'plus'
@@ -116,9 +119,8 @@ export class Map extends React.Component {
               () => console.log("Event onPress")
             }
           />
-
           <FloatingButtonAndroid
-            style={styles.fab}
+            style={styles.mapFab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
             icon = 'minus'
@@ -126,9 +128,8 @@ export class Map extends React.Component {
               () => console.log("Event onPress")
             }
           />
-
           <FloatingButtonAndroid
-            style={styles.fab}
+            style={styles.mapFab}
             backgroundColor={this.fabBackgroundColor}
             rippleColor='black'
             icon = 'location'
@@ -137,7 +138,19 @@ export class Map extends React.Component {
               () => console.log("Event onPress")
             }
           />
+        </View>
 
+        <View style = {styles.searchFabContainer}>
+          <FloatingButtonAndroid
+            style={styles.searchFab}
+            backgroundColor={this.fabBackgroundColor}
+            rippleColor='black'
+            icon = 'search'
+            textSize = {25}
+            onPress={
+              () => console.log("Event onPress")
+            }
+          />
         </View>
 
       </View>
