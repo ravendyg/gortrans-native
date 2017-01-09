@@ -17,6 +17,7 @@ MYAPP_RELEASE_KEY_ALIAS=my-key-alias
 MYAPP_RELEASE_STORE_PASSWORD=***
 MYAPP_RELEASE_KEY_PASSWORD=***
 
+- change comments on SYSTEM_ALERT_WINDOW permission
 
 - rm -rf node_modules && npm install
 
